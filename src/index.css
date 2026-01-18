@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-term-green: #28c840;
+  --color-term-bg: #0c0c0c;
+  --font-mono: "Fira Code", monospace;
+
+  --animate-cursor: cursor .75s step-end infinite;
+
+  @keyframes cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+:root {
+  --term-bg: #0c0c0c;
+  --term-text: #cccccc;
+}
+
+body {
+  background-color: var(--term-bg);
+  color: var(--term-text);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+}
+
+/* Custom Utilities if needed, but Tailwind classes should cover most */
+::selection {
+  background: var(--color-term-green);
+  color: black;
+}
+
+.scanline {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.1)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.15;
+}
