@@ -157,7 +157,6 @@ const commands: Command[] = [
 ];
 
 export const Terminal: React.FC = () => {
-  // Initialize state from sessionStorage if available
   const [history, setHistory] = useState<number[]>(() => {
     const saved = sessionStorage.getItem('term_history');
     return saved ? JSON.parse(saved) : [];
@@ -179,7 +178,6 @@ export const Terminal: React.FC = () => {
     setText('');
   };
 
-  // Save state whenever it changes
   useEffect(() => {
     sessionStorage.setItem('term_history', JSON.stringify(history));
     sessionStorage.setItem('term_idx', currentCmdIndex.toString());
@@ -188,11 +186,6 @@ export const Terminal: React.FC = () => {
   useEffect(() => {
     if (currentCmdIndex >= commands.length) return;
 
-    // If we just loaded and we are resuming, maybe we want to skip animation? 
-    // For now, we'll keep the animation for the *next* command, but history is already there.
-    // Actually, if we are restoring, we might want to auto-complete if it was in middle? 
-    // No, simple logic: history has completed commands. currentCmdIndex points to the next one to run.
-    
     const targetCmd = commands[currentCmdIndex].cmd;
     let charIndex = 0;
     setTyping(true);
@@ -208,7 +201,7 @@ export const Terminal: React.FC = () => {
           setHistory(prev => [...prev, currentCmdIndex]);
           setCurrentCmdIndex(prev => prev + 1);
           setText('');
-        }, 600); // Wait before executing next
+        }, 600);
       }
     }, 50 + Math.random() * 50);
 
@@ -271,13 +264,13 @@ export const Terminal: React.FC = () => {
             </div>
           )}
           
-           {currentCmdIndex >= commands.length && (
-             <div className="flex items-center gap-2 mt-4">
+          {currentCmdIndex >= commands.length && (
+            <div className="flex items-center gap-2 mt-4">
               <span className="text-white">➜</span>
               <span className="text-blue-400">~</span>
               <span className="w-2.5 h-5 bg-gray-500 animate-pulse inline-block align-middle ml-1"></span>
             </div>
-           )}
+          )}
         </div>
       </div>
 
