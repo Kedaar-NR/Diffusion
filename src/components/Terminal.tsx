@@ -13,9 +13,13 @@ const commands: Command[] = [
   {
     cmd: 'whoami',
     output: (
-      <div className="mb-4 flex items-center gap-4">
-        <div className="flex items-center justify-center w-16 h-16">
-           <Logo className="w-full h-full" />
+      <div className="mb-4 flex items-center gap-3">
+        <div className="flex items-start justify-center w-20 h-20 overflow-hidden">
+           <img 
+               src="/logo.png" 
+               alt="Diffusion Logo" 
+               className="w-full h-auto object-cover object-top scale-125 origin-top filter contrast-125 brightness-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
+           />
         </div>
         <div className="flex flex-col justify-center">
           <span className="text-white font-bold block text-xl tracking-tight">Diffusion</span>
@@ -39,25 +43,25 @@ const commands: Command[] = [
   {
     cmd: 'ls ./apps',
     output: (
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 text-sm font-medium">
-        <div className="relative overflow-hidden p-6 rounded-3xl border border-white/10 flex flex-col items-center justify-center text-center h-auto py-8 cursor-default group transition-all hover:border-white/20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-sm font-medium">
+        <div className="relative overflow-hidden p-3 rounded-3xl border border-white/10 flex flex-col items-center justify-center text-center h-auto py-5 cursor-default group transition-all hover:border-white/20">
           <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity z-0">
              <source src="/8333185-hd_1080_1080_30fps.mp4" type="video/mp4" />
           </video>
           <div className="relative z-10">
-            <span className="block text-white text-xl mb-2 group-hover:scale-105 transition-transform drop-shadow-md font-bold">BibleStudy</span>
-            <span className="text-gray-200 text-xs mb-3 block drop-shadow font-medium bg-black/30 w-fit mx-auto px-2 py-1 rounded-full backdrop-blur-sm">v1.2.0 • Education</span>
-            <p className="text-gray-100 text-sm leading-relaxed px-2 drop-shadow-lg font-medium">Dive deeper into scripture with AI-powered insights and guided study plans.</p>
+            <span className="block text-white text-lg mb-1 group-hover:scale-105 transition-transform drop-shadow-md font-bold">BibleStudy</span>
+            <span className="text-gray-200 text-[10px] mb-2 block drop-shadow font-medium bg-black/30 w-fit mx-auto px-2 py-0.5 rounded-full backdrop-blur-sm">v1.2.0 • Education</span>
+            <p className="text-gray-100 text-xs leading-tight px-1 drop-shadow-lg font-medium">Dive deeper into scripture with AI-powered insights and guided study plans.</p>
           </div>
         </div>
-        <div className="relative overflow-hidden p-6 rounded-3xl border border-white/10 flex flex-col items-center justify-center text-center h-auto py-8 cursor-default group transition-all hover:border-white/20">
+        <div className="relative overflow-hidden p-3 rounded-3xl border border-white/10 flex flex-col items-center justify-center text-center h-auto py-5 cursor-default group transition-all hover:border-white/20">
           <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity z-0">
              <source src="/8419548-hd_1080_1080_30fps.mp4" type="video/mp4" />
           </video>
           <div className="relative z-10">
-             <span className="block text-white text-xl mb-2 group-hover:scale-105 transition-transform drop-shadow-md font-bold">Caloric</span>
-             <span className="text-gray-200 text-xs mb-3 block drop-shadow font-medium bg-black/30 w-fit mx-auto px-2 py-1 rounded-full backdrop-blur-sm">v2.0.1 • Health</span>
-             <p className="text-gray-100 text-sm leading-relaxed px-2 drop-shadow-lg font-medium">Effortlessly track your daily intake and reach your fitness goals with smart analytics.</p>
+             <span className="block text-white text-lg mb-1 group-hover:scale-105 transition-transform drop-shadow-md font-bold">Caloric</span>
+             <span className="text-gray-200 text-[10px] mb-2 block drop-shadow font-medium bg-black/30 w-fit mx-auto px-2 py-0.5 rounded-full backdrop-blur-sm">v2.0.1 • Health</span>
+             <p className="text-gray-100 text-xs leading-tight px-1 drop-shadow-lg font-medium">Effortlessly track your daily intake and reach your fitness goals with smart analytics.</p>
           </div>
         </div>
       </div>
@@ -179,13 +183,13 @@ export const Terminal: React.FC = () => {
             </div>
           )}
           
-          {currentCmdIndex >= commands.length && (
-            <div className="flex items-center gap-2 mt-4">
+           {currentCmdIndex >= commands.length && (
+             <div className="flex items-center gap-2 mt-4">
               <span className="text-white">➜</span>
               <span className="text-blue-400">~</span>
               <span className="w-2.5 h-5 bg-gray-500 animate-pulse inline-block align-middle ml-1"></span>
             </div>
-          )}
+           )}
         </div>
       </div>
     </div>
