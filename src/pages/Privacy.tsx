@@ -33,7 +33,7 @@ export const Privacy: React.FC = () => {
           
           <section>
              <h2 className="text-emerald-400 font-semibold mb-2 uppercase">4. CONTACT</h2>
-             <p>Questions? Email <a href="mailto:hello@diffusion.app" className="text-emerald-300 hover:text-emerald-200">hello@diffusion.app</a>.</p>
+             <p>Questions? Email <a href="mailto:team@bearstrategy.org" className="text-emerald-300 hover:text-emerald-200">team@bearstrategy.org</a>.</p>
           </section>
         </div>
       </div>

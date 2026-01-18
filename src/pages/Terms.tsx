@@ -30,6 +30,11 @@ export const Terms: React.FC = () => {
             <h2 className="text-emerald-400 font-semibold mb-2 uppercase">3. LIABILITY</h2>
             <p>Software is provided "AS IS", without warranty of any kind. Bear Strategy Lab and Diffusion are not liable for data loss, calories miscounted, or missed goals.</p>
           </section>
+
+          <section>
+            <h2 className="text-emerald-400 font-semibold mb-2 uppercase">4. CONTACT</h2>
+            <p>Questions? Email <a href="mailto:team@bearstrategy.org" className="text-emerald-300 hover:text-emerald-200">team@bearstrategy.org</a>.</p>
+          </section>
         </div>
       </div>
     </div>
