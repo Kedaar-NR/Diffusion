@@ -3,7 +3,7 @@
 
 @theme {
   --color-term-green: #28c840;
-  --color-term-bg: #0c0c0c;
+  --color-term-bg: #06070c;
   --font-mono: "Fira Code", monospace;
 
   --animate-cursor: cursor .75s step-end infinite;
@@ -15,18 +15,57 @@
 }
 
 :root {
-  --term-bg: #0c0c0c;
-  --term-text: #cccccc;
+  --term-bg: #05060a;
+  --term-surface: rgba(255, 255, 255, 0.04);
+  --term-glow: 0 0 35px rgba(111, 255, 211, 0.35);
+  --term-text: #cdd4e4;
+  --term-muted: #7f8aa3;
+  --term-accent: #67ffbf;
+  color-scheme: dark;
 }
 
 body {
-  background-color: var(--term-bg);
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% 20%, rgba(103, 255, 191, 0.07), transparent 28%),
+    radial-gradient(circle at 80% 0%, rgba(121, 200, 255, 0.08), transparent 25%),
+    linear-gradient(145deg, #05060a, #090c12 45%, #05060a 75%);
+  position: relative;
   color: var(--term-text);
   font-family: var(--font-mono);
   overflow-x: hidden;
 }
 
-/* Custom Utilities if needed, but Tailwind classes should cover most */
+a {
+  color: #7ce7ff;
+}
+
+a:hover {
+  color: #b9f7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 6, 10, 0) 0%, rgba(5, 6, 10, 0.35) 70%, rgba(5, 6, 10, 0.85) 100%);
+  pointer-events: none;
+}
+
 ::selection {
   background: var(--color-term-green);
   color: black;
@@ -49,4 +88,24 @@ body {
   pointer-events: none;
   z-index: 1000;
   opacity: 0.15;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  padding: 3rem 1.5rem 4rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4), var(--term-glow);
+  backdrop-filter: blur(12px);
+}
+
+.glow {
+  box-shadow: var(--term-glow);
 }
