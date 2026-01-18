@@ -9,22 +9,50 @@ interface Command {
   delay?: number;
 }
 
+const apps = [
+  { name: 'BibleStudy', version: 'v1.2.0', category: 'Education', status: 'Stable', blurb: 'Guided reading with AI insights, rooms, and shareable notes.', media: '/8333185-hd_1080_1080_30fps.mp4' },
+  { name: 'Caloric', version: 'v2.0.1', category: 'Health', status: 'Scaling', blurb: 'Frictionless nutrition tracking with smart prompts and analytics.', media: '/8419548-hd_1080_1080_30fps.mp4' },
+  { name: 'Diffusion Labs', version: 'v0.3.0', category: 'Experiments', status: 'In flight', blurb: 'Internal prototypes for growth, ops, and product validation.' }
+];
+
+const services = [
+  { title: 'Product strategy', detail: 'Narrative, brief, and roadmap with measurable checkpoints.' },
+  { title: 'Design + build', detail: 'Shipping-grade React frontends and API layers delivered in sprints.' },
+  { title: 'Growth loops', detail: 'Instrumentation, funnels, and partner integrations that compound.' },
+  { title: 'Founder tools', detail: 'Dashboards, automations, and internal tooling for speed.' }
+];
+
+const updates = [
+  { date: 'Jan 2025', text: 'Terminal experience shipped for Diffusion landing.' },
+  { date: 'Dec 2024', text: 'Caloric 2.0 hits daily active goal with new logging flow.' },
+  { date: 'Nov 2024', text: 'BibleStudy rooms reach 1k weekly active groups.' },
+];
+
 const commands: Command[] = [
+  {
+    cmd: 'ssh diffusion.app',
+    output: (
+      <div className="space-y-2 text-sm text-gray-300">
+        <p className="text-emerald-400">establishing secure channel...</p>
+        <p className="text-white">connected to Diffusion node</p>
+        <p className="text-gray-400">auth: Bear Strategy Lab</p>
+      </div>
+    ),
+    delay: 400
+  },
   {
     cmd: 'whoami',
     output: (
       <div className="mb-4 flex items-center gap-3">
-        <div className="flex items-start justify-center w-20 h-20 overflow-hidden">
-           <img 
-               src="/logo.png" 
-               alt="Diffusion Logo" 
-               className="w-full h-auto object-cover object-top scale-125 origin-top filter contrast-125 brightness-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
-           />
+        <div className="flex items-start justify-center w-16 h-16">
+          <Logo className="w-full h-full" />
         </div>
         <div className="flex flex-col justify-center">
           <span className="text-white font-bold block text-xl tracking-tight">Diffusion</span>
-          <span className="text-gray-400 text-sm"> ran by </span>
-          <a href="https://bearstrategy.org" target="_blank" rel="noopener noreferrer" className="text-white font-bold hover:underline text-sm">Bear Strategy Lab</a>
+          <p className="text-gray-300 text-sm leading-relaxed">
+            We build and deploy software like shipping a commit: small, testable, and fast to iterate.
+          </p>
+          <span className="text-gray-500 text-xs mt-1">ran by <a href="https://bearstrategy.org" target="_blank" rel="noopener noreferrer" className="text-white font-bold hover:underline text-xs">Bear Strategy Lab</a></span>
         </div>
       </div>
     ),
@@ -34,8 +62,8 @@ const commands: Command[] = [
     cmd: 'cat mission.txt',
     output: (
       <div className="mb-4 text-gray-300">
-        <p className="mb-1 text-white font-bold">We build viral, high earning apps.</p>
-        <p className="">Moving agency selectivity.</p>
+        <p className="mb-2 text-white font-bold text-lg">Deploying ideas at agency selectivity, product-team speed.</p>
+        <p className="text-sm leading-relaxed">We ship viral, high-earning apps by keeping scopes thin, feedback loops tight, and launch cycles weekly.</p>
       </div>
     ),
     delay: 1000
@@ -43,43 +71,88 @@ const commands: Command[] = [
   {
     cmd: 'ls ./apps',
     output: (
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-sm font-medium">
-        <div className="relative overflow-hidden p-3 rounded-3xl border border-white/10 flex flex-col items-center justify-center text-center h-auto py-5 cursor-default group transition-all hover:border-white/20">
-          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity z-0">
-             <source src="/8333185-hd_1080_1080_30fps.mp4" type="video/mp4" />
-          </video>
-          <div className="relative z-10">
-            <span className="block text-white text-lg mb-1 group-hover:scale-105 transition-transform drop-shadow-md font-bold">BibleStudy</span>
-            <span className="text-gray-200 text-[10px] mb-2 block drop-shadow font-medium bg-black/30 w-fit mx-auto px-2 py-0.5 rounded-full backdrop-blur-sm">v1.2.0 • Education</span>
-            <p className="text-gray-100 text-xs leading-tight px-1 drop-shadow-lg font-medium">Dive deeper into scripture with AI-powered insights and guided study plans.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 text-sm font-medium">
+        {apps.map((app) => (
+          <div key={app.name} className="relative overflow-hidden p-4 rounded-2xl border border-white/10 bg-white/5 flex flex-col gap-2 cursor-default group transition-all hover:border-white/20 min-h-[160px]">
+            {app.media && (
+              <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-45 transition-opacity z-0">
+                <source src={app.media} type="video/mp4" />
+              </video>
+            )}
+            <div className="relative z-10 flex items-center justify-between gap-2">
+              <span className="block text-white text-lg group-hover:scale-105 transition-transform drop-shadow-md font-bold">{app.name}</span>
+              <span className="text-[11px] px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/40">{app.status}</span>
+            </div>
+            <span className="relative z-10 text-gray-200 text-[11px]">{app.version} • {app.category}</span>
+            <p className="relative z-10 text-gray-100 text-xs leading-tight drop-shadow-lg font-medium">{app.blurb}</p>
           </div>
-        </div>
-        <div className="relative overflow-hidden p-3 rounded-3xl border border-white/10 flex flex-col items-center justify-center text-center h-auto py-5 cursor-default group transition-all hover:border-white/20">
-          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity z-0">
-             <source src="/8419548-hd_1080_1080_30fps.mp4" type="video/mp4" />
-          </video>
-          <div className="relative z-10">
-             <span className="block text-white text-lg mb-1 group-hover:scale-105 transition-transform drop-shadow-md font-bold">Caloric</span>
-             <span className="text-gray-200 text-[10px] mb-2 block drop-shadow font-medium bg-black/30 w-fit mx-auto px-2 py-0.5 rounded-full backdrop-blur-sm">v2.0.1 • Health</span>
-             <p className="text-gray-100 text-xs leading-tight px-1 drop-shadow-lg font-medium">Effortlessly track your daily intake and reach your fitness goals with smart analytics.</p>
-          </div>
-        </div>
+        ))}
       </div>
     ),
     delay: 1500
   },
   {
-    cmd: 'cat ./docs/legal.txt',
+    cmd: 'ls ./services',
     output: (
-      <div className="mb-4 text-sm text-gray-400">
-        <p>Use of this system is subject to the following policies:</p>
-        <ul className="list-none pl-0 mt-2 space-y-1">
-          <li>- <Link to="/privacy" className="text-blue-400 hover:text-blue-300 underline">Privacy Policy</Link></li>
-          <li>- <Link to="/terms" className="text-blue-400 hover:text-blue-300 underline">Terms of Service</Link></li>
-        </ul>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-sm">
+        {services.map((svc) => (
+          <div key={svc.title} className="p-4 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 transition-all">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.6)]" />
+              <span className="text-white font-semibold">{svc.title}</span>
+            </div>
+            <p className="text-gray-300 text-xs leading-relaxed">{svc.detail}</p>
+          </div>
+        ))}
+      </div>
+    ),
+    delay: 2200
+  },
+  {
+    cmd: 'cat ./process.md',
+    output: (
+      <div className="mb-4 text-sm text-gray-300 space-y-3">
+        <p>Pipeline for new products:</p>
+        <ol className="list-decimal pl-5 space-y-1 text-gray-200">
+          <li>Blueprint — narrow scope, define success, align on timeboxes.</li>
+          <li>Build — ship the smallest lovable surface, instrument everything.</li>
+          <li>Launch — roll out safely, gather signals, tighten feedback loops.</li>
+          <li>Iterate — weekly patches and experiments until it compounds.</li>
+        </ol>
       </div>
     ),
     delay: 3000
+  },
+  {
+    cmd: 'tail -n 3 ./updates.log',
+    output: (
+      <div className="space-y-2 text-sm">
+        {updates.map((item) => (
+          <div key={item.text} className="flex items-start gap-3 text-gray-300">
+            <span className="text-emerald-300 text-xs">{item.date}</span>
+            <p className="text-gray-200">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    ),
+    delay: 3500
+  },
+  {
+    cmd: 'cat ./contact.txt',
+    output: (
+      <div className="mb-4 text-sm text-gray-300 space-y-2">
+        <p>Say hi: <a href="mailto:hello@diffusion.app" className="text-emerald-300 hover:text-emerald-200">hello@diffusion.app</a></p>
+        <p>Book a sprint or teardown and we will follow up inside 24 hours.</p>
+        <div className="pt-2 text-xs text-gray-400">
+          <p>Use of this system is subject to:</p>
+          <ul className="list-none pl-0 mt-2 space-y-1">
+            <li>- <Link to="/privacy" className="text-blue-400 hover:text-blue-300 underline">Privacy Policy</Link></li>
+            <li>- <Link to="/terms" className="text-blue-400 hover:text-blue-300 underline">Terms of Service</Link></li>
+          </ul>
+        </div>
+      </div>
+    ),
+    delay: 4300
   }
 ];
 
