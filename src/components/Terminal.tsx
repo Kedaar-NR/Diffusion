@@ -280,6 +280,21 @@ export const Terminal: React.FC = () => {
            )}
         </div>
       </div>
+
+      <div className="panel rounded-xl border border-white/10 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <p className="text-sm text-white font-semibold">Need a sprint partner?</p>
+          <p className="text-sm text-gray-300">Ship a feature, launch a landing, or teardown your funnel with us.</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <a href="mailto:hello@diffusion.app" className="px-4 py-2 rounded-lg bg-emerald-400/15 text-emerald-200 border border-emerald-400/40 hover:bg-emerald-400/25 transition-colors text-sm">
+            Book a sprint
+          </a>
+          <a href="https://bearstrategy.org" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg border border-white/15 text-white hover:border-white/35 transition-colors text-sm">
+            Meet Bear Strategy
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
