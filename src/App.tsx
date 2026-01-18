@@ -7,11 +7,13 @@ function App() {
   return (
     <BrowserRouter>
       <div className="scanline" />
-      <Routes>
-        <Route path="/" element={<Terminal />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-      </Routes>
+      <div className="app-shell">
+        <Routes>
+          <Route path="/" element={<Terminal />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
